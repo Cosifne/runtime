@@ -22,8 +22,7 @@ jobs:
     shouldContinueOnError: ${{ and(endsWith(variables['Build.DefinitionName'], 'staging'), eq(variables['Build.Reason'], 'PullRequest')) }}
 
     # keep in sync with /eng/pipelines/common/variables.yml
-    nonPRBuild: ${{ and(eq(variables['System.TeamProject'], 'public'), ne(variables['Build.Reason'], 'PullRequest')) }}
-    dependOnEvaluatePaths: ${{ and(eq(variables['Build.Reason'], 'PullRequest'), in(variables['Build.DefinitionName'], 'runtime', 'runtime-staging', 'runtime-community')) }}
+    dependOnEvaluatePaths: ${{ and(eq(variables['Build.Reason'], 'PullRequest'), in(variables['Build.DefinitionName'], 'runtime', 'runtime-staging', 'runtime-community', 'runtime-extended-platforms')) }}
 
     variables:
       # Disable component governance in our CI builds. These builds are not shipping nor
@@ -50,7 +49,7 @@ jobs:
         value: $(buildConfigUpper)
 
       - name: _runSmokeTestsOnlyArg
-        value: '/p:RunSmokeTestsOnly=$(isNotManualAndIsPR)'
+        value: '/p:RunSmokeTestsOnly=$(isNotExtraPlatformsBuild)'
       - ${{ if or(eq(parameters.osGroup, 'windows'), eq(parameters.hostedOs, 'windows')) }}:
         - name: archiveExtension
           value: '.zip'

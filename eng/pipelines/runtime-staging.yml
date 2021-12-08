@@ -93,8 +93,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -105,8 +104,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # MacCatalyst interp - requires AOT Compilation and Interp flags
@@ -121,7 +119,7 @@ jobs:
     platforms:
     - MacCatalyst_x64
     # don't run tests on arm64 PRs until we can get significantly more devices
-    - ${{ if eq(variables['isFullMatrix'], true) }}:
+    - ${{ if eq(variables['isRollingBuild'], true) }}:
       - MacCatalyst_arm64
     variables:
       # map dependencies variables to local variables
@@ -139,8 +137,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -151,8 +148,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # MacCatalyst interp - requires AOT Compilation and Interp flags
@@ -168,7 +164,7 @@ jobs:
     platforms:
     - MacCatalyst_x64
     # don't run tests on arm64 PRs until we can get significantly more devices
-    - ${{ if eq(variables['isFullMatrix'], true) }}:
+    - ${{ if eq(variables['isRollingBuild'], true) }}:
       - MacCatalyst_arm64
     variables:
       # map dependencies variables to local variables
@@ -186,7 +182,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -197,7 +193,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # iOS/tvOS devices - Full AOT + AggressiveTrimming to reduce size
@@ -228,8 +224,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -240,8 +235,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # Build the whole product using Mono and run libraries tests
@@ -271,8 +265,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -282,8 +275,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 - template: /eng/pipelines/common/platform-matrix.yml
   parameters:
@@ -310,8 +302,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -321,8 +312,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # Build the whole product using Mono and run libraries tests
@@ -351,8 +341,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -362,8 +351,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # Build the whole product using Mono for Android and run runtime tests with interpreter
@@ -397,10 +385,9 @@ jobs:
         or(
           eq(dependencies.evaluate_paths.outputs['SetPathVars_runtimetests.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # NOTE: Per PR test execution is not recommended for runtime tests 
-      ${{ if eq(variables['isManualOrIsNotPR'], true) }}:
+      ${{ if eq(variables['isRollingBuild'], true) }}:
         # extra steps, run tests
         extraStepsTemplate: /eng/pipelines/common/templates/runtimes/android-runtime-and-send-to-helix.yml
         extraStepsParameters:
@@ -438,8 +425,7 @@ jobs:
         or(
           eq(dependencies.evaluate_paths.outputs['SetPathVars_runtimetests.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       ${{ if eq(variables['isManualOrIsNotPR'], true) }}:
         # extra steps, run tests
         extraStepsTemplate: /eng/pipelines/common/templates/runtimes/android-runtime-and-send-to-helix.yml
@@ -478,11 +464,10 @@ jobs:
         or(
           eq(dependencies.evaluate_paths.outputs['SetPathVars_runtimetests.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
-          eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # don't run tests on PRs until we can get significantly more devices
       # Turn off the testing for now, until https://github.com/dotnet/xharness/issues/663 gets resolved
-      # ${{ if eq(variables['isFullMatrix'], true) }}:
+      # ${{ if eq(variables['isRollingBuild'], true) }}:
       #   # extra steps, run tests
       #   extraStepsTemplate: /eng/pipelines/common/templates/runtimes/android-runtime-and-send-to-helix.yml
       #   extraStepsParameters:
@@ -517,7 +502,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
           eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -532,7 +517,7 @@ jobs:
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
           eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # Build Browser_wasm, on windows, and run tests with AOT
@@ -562,7 +547,7 @@ jobs:
           eq(dependencies.evaluate_paths.outputs['SetPathVars_libraries.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_mono.containsChange'], true),
           eq(dependencies.evaluate_paths.outputs['SetPathVars_installer.containsChange'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -575,7 +560,7 @@ jobs:
           or(
           eq(variables['librariesContainsChange'], true),
           eq(variables['monoContainsChange'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # Build Browser_wasm, on windows, and run Wasm.Build.Tests
@@ -601,7 +586,7 @@ jobs:
         or(
           eq(dependencies.evaluate_paths.outputs['SetPathVars_wasmbuildtests.containsChange'], true),
           eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
       # extra steps, run tests
       extraStepsTemplate: /eng/pipelines/libraries/helix.yml
       extraStepsParameters:
@@ -614,7 +599,7 @@ jobs:
           or(
           eq(variables['wasmbuildtestsContainsChange'], true),
           eq(variables['isManualOrIsNotPR'], true),
-          eq(variables['isFullMatrix'], true))
+          eq(variables['isRollingBuild'], true))
 
 #
 # CoreCLR Build for running Apple Silicon libraries-innerloop
@@ -624,7 +609,7 @@ jobs:
     jobTemplate: /eng/pipelines/coreclr/templates/build-job.yml
     buildConfig: release
     platforms:
-    - ${{ if eq(variables['isFullMatrix'], true) }}:
+    - ${{ if eq(variables['isRollingBuild'], true) }}:
       - OSX_arm64
     jobParameters:
       testGroup: innerloop
@@ -636,12 +621,11 @@ jobs:
     jobTemplate: /eng/pipelines/libraries/build-job.yml
     buildConfig: Release
     platforms:
-    - ${{ if eq(variables['isFullMatrix'], true) }}:
+    - ${{ if eq(variables['isRollingBuild'], true) }}:
       - OSX_arm64
     helixQueuesTemplate: /eng/pipelines/libraries/helix-queues-setup.yml
     jobParameters:
       isOfficialBuild: ${{ variables['isOfficialBuild'] }}
-      isFullMatrix: ${{ variables['isFullMatrix'] }}
       runTests: true
       testScope: innerloop
       liveRuntimeBuildConfig: release
